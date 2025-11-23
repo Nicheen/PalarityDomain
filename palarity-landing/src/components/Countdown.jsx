@@ -42,7 +42,7 @@ const Countdown = () => {
       <span className="separator">:</span>
       <div className="time-segment">
         <span className="time-value">{pad(timeLeft.hours)}</span>
-        <span className="time-label">HRS</span>
+        <span className="time-label">HOURS</span>
       </div>
       <span className="separator">:</span>
       <div className="time-segment">

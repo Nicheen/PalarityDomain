@@ -1,63 +1,53 @@
 .countdown-wrapper {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
+  /* CHANGE: Use Grid instead of Flex to lock positions */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  gap: clamp(1rem, 4vw, 4rem);
+  
+  width: 100%;
+  max-width: 1200px; /* Prevent it from stretching too far on ultra-wides */
+  margin: 0 auto;    /* Center the grid itself */
+  
+  /* Typography */
   font-family: var(--font-mono);
   font-weight: 700;
-  /* Massive responsive font size using clamp(min, preferred, max) */
-  font-size: clamp(3rem, 10vw, 12rem); 
-  letter-spacing: -0.05em;
+  font-size: clamp(2.5rem, 8vw, 10rem);
   line-height: 1;
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.1); /* Subtle glow */
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+  
+  /* CRITICAL FIX: Forces numbers to have equal width */
+  font-variant-numeric: tabular-nums; 
 }
 
 .time-segment {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  
+  /* CRITICAL FIX: Ensure the segment doesn't shrink */
+  min-width: 3ch; /* Roughly the width of 3 characters (e.g. "365") */
 }
 
 .time-label {
-  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
   font-family: var(--font-display);
   font-weight: 400;
   color: var(--text-secondary);
-  letter-spacing: 0.2em;
-  margin-top: 1rem;
+  letter-spacing: 0.3em;
+  margin-top: 1.5rem;
 }
 
+/* We don't need the text separators (:) in a grid layout, 
+   the whitespace acts as the separation. It looks cleaner. */
 .separator {
-  color: var(--text-secondary);
-  margin: 0 0.2em;
-  animation: pulse 2s infinite;
-  transform: translateY(-0.1em); /* Visual alignment fix */
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  display: none; 
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .countdown-wrapper {
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-  
-  .separator {
-    display: none; /* Hide colons on mobile for cleaner stacking */
-  }
-  
-  .time-segment {
-    width: 40%; /* 2x2 grid on mobile */
-  }
-}
-
-/* Ultra-wide adjustments */
-@media (min-width: 2000px) {
-  .countdown-wrapper {
-    /* distinct spacing for massive screens */
-    gap: 2rem; 
+    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+    gap: 3rem 1rem; /* Vertical gap bigger than horizontal */
   }
 }

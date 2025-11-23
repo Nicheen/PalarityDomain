@@ -73,13 +73,18 @@ function App() {
 
       {/* Custom Toast Notification */}
       <div className={`toast ${showToast ? 'active' : ''}`}>
-        <span className="toast-icon">●</span>
-        <div>
-          <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>System Armed</div>
-          <div style={{ fontSize: '0.8rem', color: '#888' }}>You have been added to the protocol.</div>
+        <div className="toast-content">
+          <div className="toast-icon-box">
+            ✓
+          </div>
+          <div className="toast-text">
+            <h4>Registration Complete</h4>
+            <p>You'll receive an email when we go live.</p>
+          </div>
         </div>
+        {/* The line that shrinks/grows */}
+        <div className="toast-progress"></div>
       </div>
-
     </div>
   );
 }

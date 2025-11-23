@@ -121,24 +121,31 @@ body {
   transform: scale(0.98);
 }
 
-/* --- TOAST NOTIFICATION --- */
+/* --- HUD TOAST NOTIFICATION --- */
 .toast {
   position: fixed;
-  bottom: 30px;
+  bottom: 90%; /* Moved up slightly */
   left: 50%;
-  transform: translateX(-50%) translateY(100px); /* Start hidden below */
-  background: rgba(20, 20, 20, 0.95);
+  transform: translateX(-50%) translateY(-150px); /* Hidden state */
+  
+  /* Larger, bolder sizing */
+  width: 90%;
+  max-width: 450px;
+  background: rgba(10, 10, 10, 0.95);
   border: 1px solid #333;
-  border-left: 4px solid var(--success-color); /* Tech accent */
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(16, 185, 129, 0.2);
+  
+  padding: 0; /* Padding handled inside to accommodate progress bar */
+  border-radius: 8px;
+  overflow: hidden; /* Keeps the progress bar inside corners */
+  
   opacity: 0;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy pop */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
   z-index: 100;
+  
+  /* Flex layout for content */
+  display: flex;
+  flex-direction: column;
 }
 
 .toast.active {
@@ -146,16 +153,51 @@ body {
   opacity: 1;
 }
 
-.toast-icon {
-  color: var(--success-color);
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
 }
 
-/* Mobile adjustments for form */
-@media (max-width: 600px) {
-  .subscribe-form {
-    flex-direction: column;
-  }
-  .submit-btn {
-    padding: 1rem;
-  }
+.toast-icon-box {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid var(--success-color);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.toast-text h4 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+}
+
+.toast-text p {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* The Progress Bar at bottom of toast */
+.toast-progress {
+  height: 4px;
+  background: var(--success-color);
+  width: 0%;
+  align-self: flex-start;
+  box-shadow: 0 0 10px var(--success-color);
+}
+
+.toast.active .toast-progress {
+  width: 100%;
+  transition: width 4s linear; /* Matches the javascript timeout */
 }
