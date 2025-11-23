@@ -5,6 +5,7 @@
   --accent-color: #3b82f6;
   --success-color: #10b981; /* Green for success */
   --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   --input-bg: #161616;
 }
 
