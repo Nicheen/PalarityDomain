@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Countdown from './components/Countdown';
-import './App.css';
+import Countdown from './src/components/Countdown';
+import './src/App.css';
 
 function App() {
   const [email, setEmail] = useState('');
