@@ -1,0 +1,63 @@
+.countdown-wrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  /* Massive responsive font size using clamp(min, preferred, max) */
+  font-size: clamp(3rem, 10vw, 12rem); 
+  letter-spacing: -0.05em;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.1); /* Subtle glow */
+}
+
+.time-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-label {
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  margin-top: 1rem;
+}
+
+.separator {
+  color: var(--text-secondary);
+  margin: 0 0.2em;
+  animation: pulse 2s infinite;
+  transform: translateY(-0.1em); /* Visual alignment fix */
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .countdown-wrapper {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .separator {
+    display: none; /* Hide colons on mobile for cleaner stacking */
+  }
+  
+  .time-segment {
+    width: 40%; /* 2x2 grid on mobile */
+  }
+}
+
+/* Ultra-wide adjustments */
+@media (min-width: 2000px) {
+  .countdown-wrapper {
+    /* distinct spacing for massive screens */
+    gap: 2rem; 
+  }
+}

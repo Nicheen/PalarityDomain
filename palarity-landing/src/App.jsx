@@ -1,35 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import Countdown from './components/Countdown';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [email, setEmail] = useState('');
+  const [showToast, setShowToast] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    // Simulate API call
+    console.log(`Subscribing: ${email}`);
+    
+    // Reset input
+    setEmail('');
+    
+    // Trigger Toast
+    setShowToast(true);
+    
+    // Hide Toast after 4 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 4000);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      
+      {/* Navigation */}
+      <div className="header-wrap">
+        <div style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>PALARITY.DEV</div>
+        <nav>
+          <a href="#" style={{ color: '#fff', textDecoration: 'none', opacity: 0.7, fontSize: '0.9rem' }}>
+            Contact
+          </a>
+        </nav>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+
+      {/* Centered Content */}
+      <main className="content-wrap">
+        <h1 className="event-title">
+          Summer Sale 2026
+        </h1>
+        
+        <Countdown />
+        
+        {/* Subscription Form */}
+        <form className="subscribe-form" onSubmit={handleSubscribe}>
+          <input 
+            type="email" 
+            placeholder="Enter your email..." 
+            className="email-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit" className="submit-btn">
+            Notify Me
+          </button>
+        </form>
+
+        <p style={{ marginTop: '2rem', fontSize: '0.8rem', color: '#444' }}>
+          Join the waitlist. No spam, just the launch signal.
         </p>
+      </main>
+
+      {/* Footer */}
+      <div className="footer-wrap">
+        &copy; {new Date().getFullYear()} Palarity AB. Uppsala, Sweden.
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {/* Custom Toast Notification */}
+      <div className={`toast ${showToast ? 'active' : ''}`}>
+        <span className="toast-icon">●</span>
+        <div>
+          <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>System Armed</div>
+          <div style={{ fontSize: '0.8rem', color: '#888' }}>You have been added to the protocol.</div>
+        </div>
+      </div>
+
+    </div>
+  );
 }
 
-export default App
+export default App;
