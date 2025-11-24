@@ -1,4 +1,5 @@
 import React from 'react';
+import { initGA, logPageView, logEvent } from '../utils/analytics';
 import './SocialModal.css';
 
 // Simple SVG Icons for zero-dependency
@@ -23,23 +24,51 @@ const SocialModal = ({ isOpen, onClose }) => {
         </div>
         
         <div className="social-grid">
-          <a href="https://store.steampowered.com" target="_blank" rel="noreferrer" className="social-card">
+          <a 
+            href="https://store.steampowered.com" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="social-card"
+            onClick={() => logEvent("Social Link", "Click Steam", "Social Modal")}
+          >
             <span className="icon">{Icons.Steam}</span>
             <span className="name">Steam</span>
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social-card">
+          <a 
+            href="https://twitter.com" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="social-card"
+            onClick={() => logEvent("Social Link", "Click Twitter", "Social Modal")}
+          >
             <span className="icon">{Icons.Twitter}</span>
             <span className="name">X / Twitter</span>
           </a>
-          <a href="https://discord.gg/UkKRPNJUnu" target="_blank" rel="noreferrer" className="social-card">
+          <a 
+            href="https://discord.gg/UkKRPNJUnu"
+            target="_blank"
+            rel="noreferrer"
+            className="social-card"
+            onClick={() => logEvent("Social Link", "Click Discord", "Social Modal")}
+          >
             <span className="icon">{Icons.Discord}</span>
             <span className="name">Discord</span>
           </a>
-          <a href="https://www.instagram.com/palarity/" target="_blank" rel="noreferrer" className="social-card">
+          <a 
+            href="https://www.instagram.com/palarity/"
+            target="_blank"
+            rel="noreferrer"
+            className="social-card"
+            onClick={() => logEvent("Social Link", "Click Instagram", "Social Modal")}
+          >
             <span className="icon">{Icons.Instagram}</span>
             <span className="name">Instagram</span>
           </a>
-          <a href="mailto:contact@palarity.dev" className="social-card full-width">
+          <a 
+            href="mailto:contact@palarity.dev"
+            className="social-card full-width"
+            onClick={() => logEvent("Social Link", "Click Email", "Social Modal")}
+          >
             <span className="icon">{Icons.Email}</span>
             <span className="name">contact@palarity.dev</span>
           </a>

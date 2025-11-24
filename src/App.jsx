@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Countdown from './components/Countdown.jsx';
 import SocialModal from './components/SocialModal.jsx';
 import CookieConsent from './components/CookieConsent.jsx';
+import { initGA, logPageView, logEvent } from './utils/analytics';
 import './App.css';
 
 function App() {
@@ -14,16 +15,13 @@ function App() {
     e.preventDefault();
     if (!email) return;
 
-    // Simulate API call
+    logEvent("Subscription", "Submit Email", "Notify Me Button");
+
     console.log(`Subscribing: ${email}`);
     
-    // Reset input
     setEmail('');
-    
-    // Trigger Toast
     setShowToast(true);
-    
-    // Hide Toast after 4 seconds
+
     setTimeout(() => {
       setShowToast(false);
     }, 4000);
@@ -46,7 +44,10 @@ function App() {
         <div style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>PALARITY.DEV</div>
         <nav>
           <button 
-            onClick={() => setIsContactOpen(true)}
+            onClick={() => {
+              logEvent("Navigation", "Open Contact Modal", "Header Contact Button");
+              setIsContactOpen(true);
+            }}
             style={{ 
               background: 'none',
               border: 'none',

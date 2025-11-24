@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { initGA, logPageView } from '../utils/analytics';
+import { initGA, logPageView, logEvent } from '../utils/analytics';
 import './CookieConsent.css';
 
 const CookieConsent = () => {
@@ -36,15 +36,25 @@ const CookieConsent = () => {
     <div className="cookie-banner">
       <div className="cookie-content">
         <p>
-          <strong>Data Collection Protocol:</strong> We use cookies to analyze traffic and optimize the launch sequence.
+          We use cookies to analyze website traffic and improve your experience.
+        </p><p>
+          No personal data is collected without your consent.
         </p>
       </div>
       <div className="cookie-actions">
-        <button onClick={handleDecline} className="cookie-btn decline">
-          Decline
+        <button 
+          onClick={handleAccept}
+          className="cookie-btn accept"
+          aria-label="Accept analytics cookies"
+        >
+          Accept
         </button>
-        <button onClick={handleAccept} className="cookie-btn accept">
-          Initialize
+        <button 
+          onClick={handleDecline}
+          className="cookie-btn decline"
+          aria-label="Decline analytics cookies"
+        >
+          Decline
         </button>
       </div>
     </div>
