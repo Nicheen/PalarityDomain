@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import Countdown from './components/Countdown.jsx';
+import SocialModal from './components/SocialModal.jsx';
+import CookieConsent from './components/CookieConsent.jsx';
 import './App.css';
 
 function App() {
   const [email, setEmail] = useState('');
   const [showToast, setShowToast] = useState(false);
+
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -27,14 +31,35 @@ function App() {
 
   return (
     <div className="container">
+
+      {/* Analytics Consent Banner */}
+      <CookieConsent />
+
+      {/* Social Modal */}
+      <SocialModal 
+        isOpen={isContactOpen} 
+        onClose={() => setIsContactOpen(false)} 
+      />
       
       {/* Navigation */}
       <div className="header-wrap">
         <div style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>PALARITY.DEV</div>
         <nav>
-          <a href="#" style={{ color: '#fff', textDecoration: 'none', opacity: 0.7, fontSize: '0.9rem' }}>
+          <button 
+            onClick={() => setIsContactOpen(true)}
+            style={{ 
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: '#fff', 
+              textDecoration: 'none', 
+              opacity: 0.7, 
+              fontSize: '0.9rem',
+              fontFamily: 'inherit'
+            }}
+          >
             Contact
-          </a>
+          </button>
         </nav>
       </div>
 
@@ -62,7 +87,7 @@ function App() {
         </form>
 
         <p style={{ marginTop: '2rem', fontSize: '0.8rem', color: '#444' }}>
-          Join the waitlist. No spam, just the launch signal.
+          Join the waitlist. No spam. We respect your privacy.
         </p>
       </main>
 
