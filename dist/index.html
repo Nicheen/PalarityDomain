@@ -2,12 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap">
     <link rel="icon" type="image/svg+xml" href="/assets/logo_square_transparent.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Palarity AB</title>
-    <meta name="description" content="Countdown to the launch of Palarity AB's upcoming game. Stay tuned for the release." />
+    
+    <!-- Title -->
+    <title>Palarity</title>
+    
+    <!-- Meta Tags -->
     <meta name="author" content="Palarity AB" />
+    <meta name="description" content="Palarity AB — indie game studio based in Uppsala, Sweden. Join our waitlist for Summer Sale 2026. Get updates, beta access and exclusive content about our upcoming game.">
+    <meta name="keywords" content="indie game studio, game development, Palarity, Uppsala, Sweden, upcoming game, beta access">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.palarity.dev/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Palarity AB — Indie Game Studio | Summer Sale 2026">
+    <meta property="og:description" content="Join our waitlist for Summer Sale 2026. Get updates, beta access and exclusive content about our upcoming game.">
+    <meta property="og:image" content="https://www.palarity.dev/assets/og-image.png">
+    <meta property="og:url" content="https://www.palarity.dev/">
+    <meta property="og:site_name" content="Palarity AB">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Palarity AB — Indie Game Studio | Summer Sale 2026">
+    <meta name="twitter:description" content="Join our waitlist for Summer Sale 2026. Get updates, beta access and exclusive content.">
+    <meta name="twitter:image" content="https://www.palarity.dev/assets/og-image.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Palarity AB",
+      "url": "https://www.palarity.dev",
+      "logo": "https://www.palarity.dev/assets/logo_square_transparent.png",
+      "description": "Indie game studio based in Uppsala, Sweden",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Uppsala",
+        "addressCountry": "SE"
+      },
+      "sameAs": []
+    }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZDG8SK527"></script>
@@ -22,5 +71,16 @@
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Fallback content for when JavaScript is disabled -->
+    <noscript>
+      <div style="font-family: Inter, system-ui, sans-serif; max-width: 600px; margin: 100px auto; padding: 20px; text-align: center;">
+        <h1>Palarity AB — Indie Game Studio</h1>
+        <h2>Summer Sale 2026 Countdown</h2>
+        <p>Join our waitlist for updates, beta access and exclusive content about our upcoming game.</p>
+        <p>Please enable JavaScript to view the full experience and sign up for our launch list.</p>
+        <p style="margin-top: 40px; color: #666;">© 2024 Palarity AB. Uppsala, Sweden.</p>
+      </div>
+    </noscript>
   </body>
 </html>
