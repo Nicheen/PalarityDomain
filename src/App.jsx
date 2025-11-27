@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Countdown from './components/Countdown.jsx';
 import SocialModal from './components/SocialModal.jsx';
 import CookieConsent from './components/CookieConsent.jsx';
+import AboutSection from './components/AboutSection.jsx';
 import { initGA, logPageView, logEvent } from './utils/analytics';
 import './App.css';
 
@@ -44,53 +45,50 @@ function App() {
         <div style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>PALARITY.DEV</div>
         <nav>
           <button 
+            className="contact-trigger"
             onClick={() => {
               logEvent("Navigation", "Open Contact Modal", "Header Contact Button");
               setIsContactOpen(true);
             }}
-            style={{ 
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: '#fff', 
-              textDecoration: 'none', 
-              opacity: 0.7, 
-              fontSize: '0.9rem',
-              fontFamily: 'inherit'
-            }}
+            aria-label="Contact Us"
           >
-            Contact
+            <span className="status-dot"></span>
+            <span className="contact-text">Contact</span>
           </button>
         </nav>
       </div>
 
-      {/* Centered Content */}
-      <main className="content-wrap">
-        <h1 className="event-title">
-          Summer Sale 2026
-        </h1>
-        
-        <Countdown />
-        
-        {/* Subscription Form */}
-        <form className="subscribe-form" onSubmit={handleSubscribe}>
-          <input 
-            type="email" 
-            placeholder="Enter your email..." 
-            className="email-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit" className="submit-btn">
-            Notify Me
-          </button>
-        </form>
+      {/* Main Hero Screen */}
+      <main className="content-wrap" style={{ minHeight: '90vh' }}> 
+          <h1 className="event-title">Summer Sale 2026</h1>
+          <Countdown />
+          {/* Subscription Form */}
+          <form className="subscribe-form" onSubmit={handleSubscribe}>
+            <input 
+              type="email" 
+              placeholder="Enter your email..." 
+              className="email-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button type="submit" className="submit-btn">
+              Notify Me
+            </button>
+          </form>
 
-        <p style={{ marginTop: '2rem', fontSize: '0.8rem', color: '#444' }}>
-          Join the waitlist. No spam. We respect your privacy.
-        </p>
+          <p style={{ marginTop: '2rem', fontSize: '0.8rem', color: '#444' }}>
+            Join the waitlist. No spam. We respect your privacy.
+          </p>
       </main>
+
+      {/* A subtle "Scroll Down" indicator */}
+      <div className="scroll-indicator">
+        ↓
+      </div>
+
+      {/* The New Manifesto Section */}
+      <AboutSection />
 
       {/* Footer */}
       <div className="footer-wrap">

@@ -25,14 +25,14 @@ const SocialModal = ({ isOpen, onClose }) => {
         
         <div className="social-grid">
           <a 
-            href="https://store.steampowered.com" 
+            href="https://palarity.dev" 
             target="_blank" 
             rel="noreferrer" 
             className="social-card"
             onClick={() => logEvent("Social Link", "Click Steam", "Social Modal")}
           >
             <span className="icon">{Icons.Steam}</span>
-            <span className="name">Steam</span>
+            <span className="name">Steam (SOON)</span>
           </a>
           <a 
             href="https://twitter.com" 
@@ -70,7 +70,7 @@ const SocialModal = ({ isOpen, onClose }) => {
             onClick={() => logEvent("Social Link", "Click Email", "Social Modal")}
           >
             <span className="icon">{Icons.Email}</span>
-            <span className="name">contact@palarity.dev</span>
+            <span className="name">palarity.ab@gmail.com</span>
           </a>
         </div>
       </div>

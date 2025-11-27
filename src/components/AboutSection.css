@@ -1,0 +1,81 @@
+.about-wrapper {
+  width: 100%;
+  min-height: 80vh; /* Takes up almost a full screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 4rem 1rem;
+  padding-bottom: 15rem;
+  overflow: hidden; /* Keeps floating tags inside */
+}
+
+.about-container {
+  max-width: 800px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.about-header {
+  font-size: 0.9rem;
+  color: var(--accent-color); /* The blue you have defined */
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #888;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-content .highlight-text {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Floating Background Elements --- */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-content .highlight-text { font-size: 1.5rem; }
+  .floating-tag { font-size: 3rem; }
+}
+
+/* ... existing styles ... */
+
+.floating-tag {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-display); /* Ensure it uses your main font */
+  font-weight: 900;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap; /* Prevents wrapping */
+}
+
+/* Adjust positions to fit the new words better */
+.tag-1 { 
+  top: 5%; 
+  left: -5%; 
+  font-size: clamp(4rem, 8vw, 6rem); /* Responsive font size */
+  transform: rotate(-5deg); 
+}
+
+.tag-2 { 
+  bottom: 10%; 
+  right: -5%; 
+  font-size: clamp(4rem, 8vw, 6rem);
+  transform: rotate(5deg); 
+}
