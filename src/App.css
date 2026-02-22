@@ -96,11 +96,68 @@ body {
 }
 
 .event-title {
-  margin-bottom: 3rem;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.55em;
   color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+.game-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.8rem, 5.5vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+  filter: none;
+}
+
+.title-level {
+  color: #ff4d7a;
+  -webkit-text-stroke: 3px #fff;
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 30px rgba(255, 60, 100, 0.5),
+    4px 4px 0px rgba(0,0,0,0.6);
+}
+
+.title-shift {
+  color: #4ade80;
+  -webkit-text-stroke: 3px #fff;
+  paint-order: stroke fill;
+  text-shadow:
+    0 0 30px rgba(74, 222, 128, 0.5),
+    4px 4px 0px rgba(0,0,0,0.6);
+}
+
+.title-arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.85;
+  font-size: 0.55em;
+  gap: 0;
+  -webkit-text-stroke: 0;
+}
+
+.arrow-up {
+  color: #4ade80;
+  text-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+  display: block;
+}
+
+.arrow-down {
+  color: #ff4d7a;
+  text-shadow: 0 0 20px rgba(255, 60, 100, 0.8);
+  display: block;
 }
 
 /* --- NOTIFY ME FORM --- */

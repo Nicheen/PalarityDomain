@@ -1,53 +1,29 @@
-.countdown-wrapper {
-  /* CHANGE: Use Grid instead of Flex to lock positions */
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  gap: clamp(1rem, 4vw, 4rem);
-  
-  width: 100%;
-  max-width: 1200px; /* Prevent it from stretching too far on ultra-wides */
-  margin: 0 auto;    /* Center the grid itself */
-  
-  /* Typography */
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 8vw, 10rem);
-  line-height: 1;
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-  
-  /* CRITICAL FIX: Forces numbers to have equal width */
-  font-variant-numeric: tabular-nums; 
-}
-
-.time-segment {
-  display: flex;
-  flex-direction: column;
+.coming-soon-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  
-  /* CRITICAL FIX: Ensure the segment doesn't shrink */
-  min-width: 3ch; /* Roughly the width of 3 characters (e.g. "365") */
-}
-
-.time-label {
-  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+  gap: 0.6rem;
   font-family: var(--font-display);
-  font-weight: 400;
-  color: var(--text-secondary);
-  letter-spacing: 0.3em;
-  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  padding: 0.6rem 1.5rem;
+  border-radius: 99px;
+  background: rgba(59, 130, 246, 0.06);
 }
 
-/* We don't need the text separators (:) in a grid layout, 
-   the whitespace acts as the separation. It looks cleaner. */
-.separator {
-  display: none; 
+.coming-soon-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: dot-pulse 2s ease-in-out infinite;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .countdown-wrapper {
-    grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
-    gap: 3rem 1rem; /* Vertical gap bigger than horizontal */
-  }
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
 }
