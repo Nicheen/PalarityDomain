@@ -33,19 +33,31 @@
   top: 5%;
   left: 1%;
   -webkit-text-stroke: 2px rgba(255, 77, 122, 0.2);
-  animation: word-drift 14s ease-in-out infinite alternate;
+  animation: level-bg-drift 17s ease-in-out infinite;
 }
 
 .about-bg-word--shift {
   bottom: 5%;
   right: 1%;
   -webkit-text-stroke: 2px rgba(74, 222, 128, 0.2);
-  animation: word-drift 11s ease-in-out infinite alternate-reverse;
+  animation: shift-bg-drift 13s ease-in-out infinite;
 }
 
-@keyframes word-drift {
-  from { transform: translateY(0px);   }
-  to   { transform: translateY(-20px); }
+@keyframes level-bg-drift {
+  0%   { transform: translate(  0px,   0px) rotate(-1.5deg); }
+  22%  { transform: translate( 18px, -22px) rotate( 0.8deg); }
+  45%  { transform: translate( -6px, -35px) rotate(-0.4deg); }
+  68%  { transform: translate( 12px, -14px) rotate( 1.2deg); }
+  85%  { transform: translate( -4px,  -8px) rotate(-0.9deg); }
+  100% { transform: translate(  0px,   0px) rotate(-1.5deg); }
+}
+
+@keyframes shift-bg-drift {
+  0%   { transform: translate(  0px,  0px) rotate( 1.5deg); }
+  28%  { transform: translate(-20px, 18px) rotate(-0.7deg); }
+  52%  { transform: translate(  8px, 30px) rotate( 0.5deg); }
+  74%  { transform: translate(-14px, 10px) rotate(-1.3deg); }
+  100% { transform: translate(  0px,  0px) rotate( 1.5deg); }
 }
 
 /* ---- Content ---- */
