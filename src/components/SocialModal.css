@@ -1,124 +1,102 @@
-.modal-overlay {
+/* ---- Dropdown panel ---- */
+.social-dropdown {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+  top: 4.75rem;
+  right: 2rem;
+  width: 230px;
+  background: #0c0c0c;
+  border: 1px solid #1c1c1c;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 150;
+
+  /* Closed state */
+  opacity: 0;
+  transform: translateY(-8px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-dropdown.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ---- Row ---- */
+.sd-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.modal-content {
-  background: #0f0f0f;
-  border: 1px solid #333;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #222;
-}
-
-.modal-header h3 {
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.9rem;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: #fff;
-}
-
-/* Grid Layout for Socials */
-.social-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.social-card {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: #1a1a1a;
-  padding: 1rem;
-  border-radius: 6px;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
   text-decoration: none;
-  color: #ccc;
-  border: 1px solid transparent;
-  transition: all 0.2s;
+  color: #555;
+  border-bottom: 1px solid #111;
+  transition: color 0.15s, background 0.15s;
+
+  /* Hidden until open */
+  opacity: 0;
+  transform: translateY(-5px);
 }
 
-/* Make email span full width */
-.social-card.full-width {
-  grid-column: span 2;
-  justify-content: center;
+.social-dropdown.open .sd-row {
+  animation: sd-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 0.055s) forwards;
 }
 
-.social-card:hover {
-  background: #252525;
-  border-color: #444;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.sd-row:last-child {
+  border-bottom: none;
 }
 
-.social-card .icon {
+.sd-row:hover {
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ---- Icon ---- */
+.sd-icon {
   display: flex;
   align-items: center;
-  color: #3b82f6; /* Accent color */
+  color: var(--accent-color);
+  flex-shrink: 0;
+  transition: color 0.15s;
 }
 
-.social-card:hover .icon {
-  color: #10b981; /* Green on hover */
+.sd-row:hover .sd-icon {
+  color: #fff;
 }
 
-.social-card .name {
+/* ---- Label ---- */
+.sd-name {
+  flex: 1;
+  font-size: 0.78rem;
   font-weight: 500;
-  font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ---- External arrow ---- */
+.sd-arrow {
+  font-size: 0.65rem;
+  color: #2a2a2a;
+  transition: color 0.15s, transform 0.15s;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+.sd-row:hover .sd-arrow {
+  color: #555;
+  transform: translateX(2px) translateY(-2px);
 }
 
-@media (max-width: 500px) {
-  .social-grid {
-    grid-template-columns: 1fr;
+@keyframes sd-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .social-card.full-width {
-    grid-column: span 1;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 480px) {
+  .social-dropdown {
+    right: 1rem;
+    width: calc(100vw - 2rem);
+    top: 4.25rem;
   }
 }
