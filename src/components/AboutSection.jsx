@@ -4,36 +4,34 @@ import './AboutSection.css';
 const AboutSection = () => {
   return (
     <section className="about-wrapper">
+
+      <div className="about-bg">
+        <div className="about-bg-word about-bg-word--level">LEVEL</div>
+        <div className="about-bg-word about-bg-word--shift">SHIFT</div>
+      </div>
+
       <div className="about-container">
-        <h2 className="about-header">BUILDING OUR GAME</h2>
-        
+        <h2 className="about-title">ABOUT US</h2>
+
         <div className="about-content">
-          <p className="highlight-text">
-            About Us. About Palarity.
-          </p>
-          
           <p>
-            Palarity was founded in October 2025 by two electrical engineers 
-            from Uppsala University, looking for a challenge. 
-          </p>
-          
-          <p>
-            Our journey began in a low-level C library, building a game engine from scratch. 
-            Why? Because we wanted to understand every detail. Now, we've ported that obsession 
-            into Godot to build our debut title.
+            Palarity was started in October 2025 by two electrical engineers
+            from Uppsala University.
           </p>
 
           <p>
-            We are building a <strong>high-precision 2D action platformer</strong> where every pixel counts. 
-            It's a world of geometric chaos, dash mechanics, and stage-based speedrunning. 
-            No fluff. Just blocks, bosses, and bombs.
+            Before using Godot, we wrote a game engine in C from scratch.
+            It taught us a lot about how things work under the hood,
+            and that shows in how we make our games.
+          </p>
+
+          <p>
+            We are making a <strong>precision 2D platformer</strong> with tight controls,
+            geometric level design, dash mechanics, and speedrunning.
           </p>
         </div>
-
-        {/* Updated Keywords for a Speedrun/Twitch-shooter vibe */}
-        <div className="floating-tag tag-1">VELOCITY</div>
-        <div className="floating-tag tag-2">PRECISION</div>
       </div>
+
     </section>
   );
 };
