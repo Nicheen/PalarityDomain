@@ -15,6 +15,11 @@ function App() {
   const touchStartY = useRef(0);
   const menuRef = useRef(null);
 
+  // Lock scroll on home (slider), unlock on other pages
+  useEffect(() => {
+    document.documentElement.classList.toggle('scroll-lock', page === 'home');
+  }, [page]);
+
   // Close menu on outside click
   useEffect(() => {
     if (!isContactOpen) return;
@@ -35,6 +40,8 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (page !== 'home') return;
+
     const onWheel = (e) => {
       e.preventDefault();
       if (e.deltaY > 30 && section === 0) goTo(1);
@@ -68,7 +75,7 @@ function App() {
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [section, goTo]);
+  }, [section, goTo, page]);
 
   if (page === 'privacy') {
     return <PrivacyPolicy onClose={() => setPage('home')} />;
