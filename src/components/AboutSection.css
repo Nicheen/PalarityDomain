@@ -1,81 +1,186 @@
 .about-wrapper {
   width: 100%;
-  min-height: 80vh; /* Takes up almost a full screen */
+  flex: 1;                  /* fills the #about-section flex column */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 4rem 1rem;
-  padding-bottom: 15rem;
-  overflow: hidden; /* Keeps floating tags inside */
+  padding: 6rem 2rem;
 }
 
+/* ---- Background words ---- */
+.about-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.about-bg-word {
+  position: absolute;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(6rem, 18vw, 12rem);
+  font-weight: 400;
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.00em;
+}
+
+.about-bg-word--level {
+  top: 5%;
+  left: 1%;
+  -webkit-text-stroke: 2px rgba(255, 77, 122, 0.2);
+  animation: word-drift 14s ease-in-out infinite alternate;
+}
+
+.about-bg-word--shift {
+  bottom: 5%;
+  right: 1%;
+  -webkit-text-stroke: 2px rgba(74, 222, 128, 0.2);
+  animation: word-drift 11s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes word-drift {
+  from { transform: translateY(0px);   }
+  to   { transform: translateY(-20px); }
+}
+
+/* ---- Content ---- */
 .about-container {
-  max-width: 800px;
+  width: 100%;           /* Critical: flex items need explicit width */
+  max-width: 680px;
   text-align: center;
   z-index: 2;
   position: relative;
 }
 
-.about-header {
-  font-size: 0.9rem;
-  color: var(--accent-color); /* The blue you have defined */
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  opacity: 0.8;
+/* ---- Eyebrow ---- */
+.about-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
+.about-eyebrow-line {
+  flex: 1;
+  max-width: 50px;
+  height: 1px;
+  background: var(--accent-color);
+  opacity: 0.35;
+}
+
+.about-eyebrow-label {
+  font-size: 0.6rem;
+  color: var(--accent-color);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+/* ---- Title ---- */
+.about-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 3rem;
+  letter-spacing: 0;
+  word-spacing: -0.3em;
+}
+
+/* ---- Body copy ---- */
 .about-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #888;
+  font-size: 1rem;
+  line-height: 1.95;
+  color: #666;
   margin-bottom: 1.5rem;
   font-weight: 300;
-  max-width: 600px;
+  max-width: 560px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.about-content .highlight-text {
-  font-size: 2rem;
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 2.5rem;
+.about-content p:last-child {
+  margin-bottom: 0;
 }
 
-/* --- Floating Background Elements --- */
-/* Responsive adjustments */
+.about-content p strong {
+  color: #bbb;
+  font-weight: 500;
+}
+
+/* ---- Tablet (768px) ---- */
 @media (max-width: 768px) {
-  .about-content .highlight-text { font-size: 1.5rem; }
-  .floating-tag { font-size: 3rem; }
+  .about-wrapper {
+    padding: 5rem 2rem;
+    min-height: unset;
+  }
+
+  .about-bg-word {
+    font-size: clamp(4rem, 19vw, 8rem);
+  }
+
+  .about-title {
+    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+    margin-bottom: 2rem;
+  }
+
+  .about-content p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+  }
 }
 
-/* ... existing styles ... */
+/* ---- Phone (480px) ---- */
+@media (max-width: 480px) {
+  .about-wrapper {
+    padding: 4rem 1.5rem;
+  }
 
-.floating-tag {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.03);
-  font-family: var(--font-display); /* Ensure it uses your main font */
-  font-weight: 900;
-  z-index: 1;
-  user-select: none;
-  pointer-events: none;
-  white-space: nowrap; /* Prevents wrapping */
-}
+  .about-eyebrow {
+    margin-bottom: 1.75rem;
+    gap: 0.75rem;
+  }
 
-/* Adjust positions to fit the new words better */
-.tag-1 { 
-  top: 5%; 
-  left: -5%; 
-  font-size: clamp(4rem, 8vw, 6rem); /* Responsive font size */
-  transform: rotate(-5deg); 
-}
+  .about-eyebrow-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+  }
 
-.tag-2 { 
-  bottom: 10%; 
-  right: -5%; 
-  font-size: clamp(4rem, 8vw, 6rem);
-  transform: rotate(5deg); 
+  .about-eyebrow-line {
+    max-width: 30px;
+  }
+
+  .about-bg-word {
+    font-size: clamp(3rem, 21vw, 5.5rem);
+  }
+
+  .about-bg-word--level {
+    top: 3%;
+    left: -4%;
+  }
+
+  .about-bg-word--shift {
+    bottom: 3%;
+    right: -4%;
+  }
+
+  .about-title {
+    font-size: clamp(0.95rem, 5.5vw, 1.4rem);
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+
+  .about-content p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
 }
