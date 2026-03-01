@@ -19,20 +19,22 @@
 html, body, #root {
   height: 100%;
   width: 100%;
-  overflow: hidden; /* Native scroll disabled — JS controls pages */
+  overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* Applied only on the home/slider page — JS controls pages */
+html.scroll-lock,
+html.scroll-lock body,
+html.scroll-lock #root {
+  overflow: hidden;
 }
 
 html::-webkit-scrollbar, body::-webkit-scrollbar, #root::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-10px);}
-  60% {transform: translateY(-5px);}
-}
 
 body {
   background-color: var(--bg-color);
