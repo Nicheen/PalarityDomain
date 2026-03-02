@@ -58,17 +58,20 @@ body {
 /* Full-bleed sections must escape the center-align shrink-wrap */
 #about-section {
   width: 100%;
+  max-width: 1600px;
+  justify-content: center;
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 /* ---- Full-page slider ---- */
 .pages-slider {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: max(0px, calc((100vw - 1600px) / 2));
+  width: min(100vw, 1600px);
   transition: transform 0.9s cubic-bezier(0.87, 0, 0.13, 1);
   will-change: transform;
   z-index: 0;
@@ -89,7 +92,7 @@ body {
 /* ---- Page dots ---- */
 .page-dots {
   position: fixed;
-  right: 1.5rem;
+  right: calc(max(0px, (100vw - 1600px) / 2) + 1.5rem);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -116,6 +119,12 @@ body {
 
 @media (max-width: 480px) {
   .page-dots { right: 0.9rem; }
+  .footer-wrap {
+    padding: 0 1.5rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
 }
 
 /* Header and Footer wrappers to keep them spaced out but centered */
@@ -131,6 +140,8 @@ body {
 
 .header-wrap {
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ---------------------------------------------------- */

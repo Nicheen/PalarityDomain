@@ -14,13 +14,13 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .about-bg-word {
   position: absolute;
   font-family: 'Press Start 2P', monospace;
-  font-size: clamp(6rem, 18vw, 12rem);
+  font-size: clamp(6rem, 18vw, 15rem);
   font-weight: 400;
   white-space: nowrap;
   user-select: none;
@@ -131,8 +131,17 @@
 /* ---- Tablet (768px) ---- */
 @media (max-width: 768px) {
   .about-wrapper {
-    padding: 5rem 2rem;
-    min-height: unset;
+    padding: 2rem 1.5rem;
+  }
+
+  .about-bg-word--level {
+    top: 15%;
+    left: -5%;
+  }
+
+  .about-bg-word--shift {
+    bottom: 10%;
+    right: -5%;
   }
 
   .about-bg-word {
@@ -153,7 +162,17 @@
 /* ---- Phone (480px) ---- */
 @media (max-width: 480px) {
   .about-wrapper {
-    padding: 4rem 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .about-bg-word--level {
+    top: 15%;
+    left: -5%;
+  }
+
+  .about-bg-word--shift {
+    bottom: 10%;
+    right: -5%;
   }
 
   .about-eyebrow {
@@ -172,16 +191,6 @@
 
   .about-bg-word {
     font-size: clamp(3rem, 21vw, 5.5rem);
-  }
-
-  .about-bg-word--level {
-    top: 3%;
-    left: -4%;
-  }
-
-  .about-bg-word--shift {
-    bottom: 3%;
-    right: -4%;
   }
 
   .about-title {
