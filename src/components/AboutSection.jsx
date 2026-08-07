@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLang } from '../i18n/LanguageContext.jsx';
 import './AboutSection.css';
 
-const AboutSection = () => {
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+const AboutSection = ({ active }) => {
+  const { t } = useLang();
+  const [p1, p2, p3] = t.about.paragraphs;
+  const fullTitle = t.about.title;
+  const [typed, setTyped] = useState('');
+
+  // Typewriter the title whenever the section becomes active; reset on exit
+  // so it replays each time you scroll back in.
+  useEffect(() => {
+    if (!active) {
+      const id = setTimeout(() => setTyped(''), 0);
+      return () => clearTimeout(id);
+    }
+    if (prefersReducedMotion()) {
+      const id = setTimeout(() => setTyped(fullTitle), 0);
+      return () => clearTimeout(id);
+    }
+    let i = 0;
+    const id = setInterval(() => {
+      i += 1;
+      setTyped(fullTitle.slice(0, i));
+      if (i >= fullTitle.length) clearInterval(id);
+    }, 95);
+    return () => clearInterval(id);
+  }, [active, fullTitle]);
+
   return (
     <section className="about-wrapper">
 
@@ -11,24 +41,14 @@ const AboutSection = () => {
       </div>
 
       <div className="about-container">
-        <h2 className="about-title">ABOUT US</h2>
+        <h2 className="about-title" aria-label={fullTitle}>
+          <span aria-hidden="true">{typed}</span>
+        </h2>
 
-        <div className="about-content">
-          <p>
-            Palarity was started in October 2025 by two electrical engineers
-            from Uppsala University.
-          </p>
-
-          <p>
-            Before using Godot, we wrote a game engine in C from scratch.
-            It taught us a lot about how things work under the hood,
-            and that shows in how we make our games.
-          </p>
-
-          <p>
-            We are making a <strong>precision 2D platformer</strong> with tight controls,
-            geometric level design, dash mechanics, and speedrunning.
-          </p>
+        <div className={`about-content${active ? ' in' : ''}`}>
+          <p>{p1}</p>
+          <p>{p2}</p>
+          <p>{p3.pre}<strong>{p3.strong}</strong>{p3.post}</p>
         </div>
       </div>
 
