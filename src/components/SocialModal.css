@@ -9,6 +9,7 @@
   border-radius: 10px;
   overflow: hidden;
   z-index: 150;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55);
 
   /* Closed state */
   opacity: 0;
@@ -30,7 +31,7 @@
   gap: 0.75rem;
   padding: 0.8rem 1rem;
   text-decoration: none;
-  color: #555;
+  color: #9a9a9a;
   border-bottom: 1px solid #111;
   transition: color 0.15s, background 0.15s;
 
@@ -97,6 +98,15 @@
   .social-dropdown {
     right: 1rem;
     width: calc(100vw - 2rem);
-    top: 4.25rem;
+    top: 5.5rem; /* clear the taller mobile header so it never covers the brand */
+  }
+
+  /* Roomier rows = comfortable tap targets */
+  .sd-row {
+    padding: 1rem 1.15rem;
+  }
+
+  .sd-name {
+    font-size: 0.85rem;
   }
 }
