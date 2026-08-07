@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { initGA, logPageView, logEvent } from '../utils/analytics';
+import { useLang } from '../i18n/LanguageContext.jsx';
 import './CookieConsent.css';
 
 const CookieConsent = () => {
+  const { t } = useLang();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -35,26 +37,23 @@ const CookieConsent = () => {
   return (
     <div className="cookie-banner">
       <div className="cookie-content">
-        <p>
-          We use cookies to analyze website traffic and improve your experience.
-        </p><p>
-          No personal data is collected without your consent.
-        </p>
+        <p>{t.cookie.line1}</p>
+        <p>{t.cookie.line2}</p>
       </div>
       <div className="cookie-actions">
-        <button 
+        <button
           onClick={handleAccept}
           className="cookie-btn accept"
-          aria-label="Accept analytics cookies"
+          aria-label={t.cookie.acceptAria}
         >
-          Accept
+          {t.cookie.accept}
         </button>
-        <button 
+        <button
           onClick={handleDecline}
           className="cookie-btn decline"
-          aria-label="Decline analytics cookies"
+          aria-label={t.cookie.declineAria}
         >
-          Decline
+          {t.cookie.decline}
         </button>
       </div>
     </div>
