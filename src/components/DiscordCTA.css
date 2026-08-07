@@ -1,0 +1,64 @@
+.discord-cta {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.discord-btn {
+  --blurple: #5865f2;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.95rem 1.9rem;
+  border-radius: 999px;
+  background: var(--blurple);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 0 22px rgba(88, 101, 242, 0.35);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease, background 0.2s ease;
+}
+
+.discord-btn:hover {
+  background: #4752f0;
+  transform: translateY(-2px);
+  box-shadow: 0 0 34px rgba(88, 101, 242, 0.6);
+}
+
+.discord-btn:active {
+  transform: translateY(0);
+}
+
+.discord-btn-icon {
+  display: inline-flex;
+}
+
+/* Sheen sweep on hover */
+.discord-btn-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+
+.discord-btn:hover .discord-btn-glow {
+  transform: translateX(120%);
+}
+
+@media (max-width: 480px) {
+  .discord-btn { font-size: 0.95rem; padding: 0.85rem 1.6rem; }
+}
