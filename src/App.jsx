@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Countdown from './components/Countdown.jsx';
 import SocialModal from './components/SocialModal.jsx';
 import CookieConsent from './components/CookieConsent.jsx';
 import AboutSection from './components/AboutSection.jsx';
 import PrivacyPolicy from './components/PrivacyPolicy.jsx';
+import LanguageToggle from './components/LanguageToggle.jsx';
+import DiscordCTA from './components/DiscordCTA.jsx';
+import { useLang } from './i18n/LanguageContext.jsx';
 import { logEvent } from './utils/analytics';
 import './App.css';
 
 function App() {
+  const { t } = useLang();
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [page, setPage] = useState('home');
   const [section, setSection] = useState(0);
@@ -87,25 +90,29 @@ function App() {
 
       {/* Fixed header */}
       <div className="header-wrap">
-        <div style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>PALARITY.DEV</div>
+        <div style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>{t.brand}</div>
 
-        {/* Hamburger + dropdown — wrapped together for outside-click detection */}
-        <div ref={menuRef} className="nav-menu">
-          <button
-            className={`hamburger${isContactOpen ? ' open' : ''}`}
-            onClick={() => {
-              logEvent('Navigation', 'Toggle Menu', 'Hamburger');
-              setIsContactOpen(v => !v);
-            }}
-            aria-label="Toggle menu"
-            aria-expanded={isContactOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+        <div className="header-right">
+          <LanguageToggle />
 
-          <SocialModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+          {/* Hamburger + dropdown — wrapped together for outside-click detection */}
+          <div ref={menuRef} className="nav-menu">
+            <button
+              className={`hamburger${isContactOpen ? ' open' : ''}`}
+              onClick={() => {
+                logEvent('Navigation', 'Toggle Menu', 'Hamburger');
+                setIsContactOpen(v => !v);
+              }}
+              aria-label={t.nav.toggleMenu}
+              aria-expanded={isContactOpen}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+
+            <SocialModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+          </div>
         </div>
       </div>
 
@@ -114,12 +121,12 @@ function App() {
         <button
           className={`page-dot${section === 0 ? ' active' : ''}`}
           onClick={() => goTo(0)}
-          aria-label="Go to hero"
+          aria-label={t.nav.pageHero}
         />
         <button
           className={`page-dot${section === 1 ? ' active' : ''}`}
           onClick={() => goTo(1)}
-          aria-label="Go to about"
+          aria-label={t.nav.pageAbout}
         />
       </nav>
 
@@ -131,24 +138,24 @@ function App() {
         {/* Page 1 – Hero */}
         <div className="page">
           <main className="content-wrap">
-            <p className="event-title">Palarity Presents</p>
+            <p className="event-title">{t.hero.presents}</p>
             <h1 className="game-title">
-              <span className="title-level">Level</span>
-              <span className="title-shift">Shift</span>
+              <span className="title-level">{t.hero.titleLevel}</span>
+              <span className="title-shift">{t.hero.titleShift}</span>
             </h1>
-            <Countdown />
+            <DiscordCTA />
           </main>
         </div>
 
         {/* Page 2 – About + Footer */}
         <div className="page page--about">
           <div id="about-section">
-            <AboutSection />
+            <AboutSection active={section === 1} />
           </div>
           <div className="footer-wrap">
-            <span>&copy; {new Date().getFullYear()} Palarity AB. Uppsala, Sweden.</span>
+            <span>{t.footer.copy(new Date().getFullYear())}</span>
             <button className="footer-link" onClick={() => setPage('privacy')}>
-              Privacy Policy
+              {t.footer.privacy}
             </button>
           </div>
         </div>

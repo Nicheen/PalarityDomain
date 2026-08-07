@@ -1,5 +1,7 @@
 import React from 'react';
 import { logEvent } from '../utils/analytics';
+import { useLang } from '../i18n/LanguageContext.jsx';
+import { DISCORD_URL } from '../config';
 import './SocialModal.css';
 
 const Icons = {
@@ -11,19 +13,22 @@ const Icons = {
 };
 
 const links = [
-  { icon: Icons.Steam,     label: 'Steam (SOON)',          href: 'https://palarity.dev',                    event: 'Click Steam' },
-  { icon: Icons.Twitter,   label: 'X / Twitter',           href: 'https://twitter.com',                     event: 'Click Twitter' },
-  { icon: Icons.Discord,   label: 'Discord',               href: 'https://discord.gg/UkKRPNJUnu',           event: 'Click Discord' },
-  { icon: Icons.Instagram, label: 'Instagram',             href: 'https://www.instagram.com/palarity/',     event: 'Click Instagram' },
-  { icon: Icons.Email,     label: 'palarity.ab@gmail.com', href: 'mailto:palarity.ab@gmail.com',            event: 'Click Email' },
+  { icon: Icons.Steam,     key: 'steam',     href: 'https://palarity.dev',                event: 'Click Steam' },
+  { icon: Icons.Twitter,   key: 'twitter',   href: 'https://twitter.com',                 event: 'Click Twitter' },
+  { icon: Icons.Discord,   key: 'discord',   href: DISCORD_URL,                           event: 'Click Discord' },
+  { icon: Icons.Instagram, key: 'instagram', href: 'https://www.instagram.com/palarity/', event: 'Click Instagram' },
+  { icon: Icons.Email,     key: 'email',     href: 'mailto:palarity.ab@gmail.com',        event: 'Click Email' },
 ];
 
 const SocialModal = ({ isOpen, onClose }) => {
+  const { t } = useLang();
   return (
     <div className={`social-dropdown${isOpen ? ' open' : ''}`} aria-hidden={!isOpen}>
-      {links.map(({ icon, label, href, event }, i) => (
+      {links.map(({ icon, key, href, event }, i) => {
+        const label = t.social[key];
+        return (
         <a
-          key={label}
+          key={key}
           href={href}
           target={href.startsWith('mailto') ? undefined : '_blank'}
           rel="noreferrer"
@@ -35,11 +40,12 @@ const SocialModal = ({ isOpen, onClose }) => {
             onClose();
           }}
         >
-          <span className="sd-icon">{icon}</span>
-          <span className="sd-name">{label}</span>
-          {!href.startsWith('mailto') && <span className="sd-arrow">↗</span>}
-        </a>
-      ))}
+            <span className="sd-icon">{icon}</span>
+            <span className="sd-name">{label}</span>
+            {!href.startsWith('mailto') && <span className="sd-arrow">↗</span>}
+          </a>
+        );
+      })}
     </div>
   );
 };
