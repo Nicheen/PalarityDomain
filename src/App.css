@@ -2,11 +2,13 @@
   --bg-color: #0a0a0a;
   --text-primary: #ffffff;
   --text-secondary: #888888;
-  --accent-color: #3b82f6;
+  /* Brand palette — arcade neon pair */
+  --brand-pink: #ff4d7a;
+  --brand-green: #4ade80;
+  --accent-color: var(--brand-green); /* interactive accent: links, icons */
   --success-color: #10b981; /* Green for success */
   --font-display: 'Inter', system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-  --input-bg: #161616;
 }
 
 * {
@@ -119,6 +121,9 @@ body {
 
 @media (max-width: 480px) {
   .page-dots { right: 0.9rem; }
+  .header-wrap {
+    padding: 1.25rem 1.25rem;
+  }
   .footer-wrap {
     padding: 0 1.5rem 1rem;
     flex-direction: column;
@@ -142,6 +147,7 @@ body {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 300; /* keep brand/toggle/hamburger above the dropdown panel */
 }
 
 /* ---------------------------------------------------- */
@@ -165,13 +171,13 @@ body {
   justify-content: center;
   gap: 1.5rem;
   font-size: 0.8rem;
-  color: #333;
+  color: #666;
 }
 
 .footer-link {
   background: none;
   border: none;
-  color: #444;
+  color: #888;
   font-family: var(--font-display);
   font-size: 0.8rem;
   cursor: pointer;
@@ -180,7 +186,7 @@ body {
 }
 
 .footer-link:hover {
-  color: #888;
+  color: #ccc;
 }
 
 .event-title {
@@ -209,7 +215,7 @@ body {
 }
 
 .title-level {
-  color: #ff4d7a;
+  color: var(--brand-pink);
   -webkit-text-stroke: 3px #fff;
   paint-order: stroke fill;
   text-shadow:
@@ -218,7 +224,7 @@ body {
 }
 
 .title-shift {
-  color: #4ade80;
+  color: var(--brand-green);
   -webkit-text-stroke: 3px #fff;
   paint-order: stroke fill;
   text-shadow:
@@ -226,156 +232,13 @@ body {
     4px 4px 0px rgba(0,0,0,0.6);
 }
 
-.title-arrows {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 0.85;
-  font-size: 0.55em;
-  gap: 0;
-  -webkit-text-stroke: 0;
-}
-
-.arrow-up {
-  color: #4ade80;
-  text-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
-  display: block;
-}
-
-.arrow-down {
-  color: #ff4d7a;
-  text-shadow: 0 0 20px rgba(255, 60, 100, 0.8);
-  display: block;
-}
-
-/* --- NOTIFY ME FORM --- */
-.subscribe-form {
-  margin-top: 4rem;
-  display: flex;
-  gap: 1rem;
-  width: 100%;
-  max-width: 400px;
-}
-
-.email-input {
-  flex: 1;
-  background: var(--input-bg);
-  border: 1px solid #333;
-  padding: 1rem 1.5rem;
-  border-radius: 4px;
-  color: white;
-  font-family: var(--font-display);
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.email-input:focus {
-  border-color: var(--text-secondary);
-}
-
-.submit-btn {
-  background: white;
-  color: black;
-  border: none;
-  padding: 0 2rem;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: transform 0.1s, opacity 0.2s;
-}
-
-.submit-btn:hover {
-  opacity: 0.9;
-}
-
-.submit-btn:active {
-  transform: scale(0.98);
-}
-
-/* --- HUD TOAST NOTIFICATION --- */
-.toast {
-  position: fixed;
-  bottom: 90%; /* Moved up slightly */
-  left: 50%;
-  transform: translateX(-50%) translateY(-150px); /* Hidden state */
-  
-  /* Larger, bolder sizing */
-  width: 90%;
-  max-width: 450px;
-  background: rgba(10, 10, 10, 0.95);
-  border: 1px solid #333;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(16, 185, 129, 0.2);
-  
-  padding: 0; /* Padding handled inside to accommodate progress bar */
-  border-radius: 8px;
-  overflow: hidden; /* Keeps the progress bar inside corners */
-  
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
-  z-index: 100;
-  
-  /* Flex layout for content */
-  display: flex;
-  flex-direction: column;
-}
-
-.toast.active {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-.toast-content {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem;
-}
-
-.toast-icon-box {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--success-color);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  border: 1px solid var(--success-color);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
-}
-
-.toast-text h4 {
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.3rem;
-  font-size: 1rem;
-}
-
-.toast-text p {
-  color: #aaa;
-  font-size: 0.85rem;
-  margin: 0;
-}
-
-/* The Progress Bar at bottom of toast */
-.toast-progress {
-  height: 4px;
-  background: var(--success-color);
-  width: 0%;
-  align-self: flex-start;
-  box-shadow: 0 0 10px var(--success-color);
-}
-
-.toast.active .toast-progress {
-  width: 100%;
-  transition: width 4s linear; /* Matches the javascript timeout */
-}
-
 /* --- HAMBURGER MENU --- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .nav-menu {
   position: relative;
 }
@@ -409,8 +272,8 @@ body {
   background: rgba(255, 255, 255, 0.9);
 }
 
-/* Animate to × */
-.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+/* Animate to × — bars are 2px tall with 5px gap, so 7px = exact center crossing */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
